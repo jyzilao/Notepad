@@ -53,10 +53,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    kotlinOptions {
-        freeCompilerArgs = freeCompilerArgs + listOf(
-            "-opt-in=kotlin.RequiresOptIn"
-        )
+    // 修复 kotlinOptions 警告，并统一 JVM 目标版本为 21
+    kotlin {
+        jvmToolchain(21)
+        compilerOptions {
+            freeCompilerArgs.addAll("-opt-in=kotlin.RequiresOptIn")
+        }
     }
 
     signingConfigs {
